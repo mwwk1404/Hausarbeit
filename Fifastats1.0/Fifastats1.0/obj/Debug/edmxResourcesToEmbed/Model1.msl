@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FifaStatsModelStoreContainer" CdmEntityContainer="FifaStatsEntities1">
+    <EntitySetMapping Name="Formationen">
+      <EntityTypeMapping TypeName="FifaStatsModel.Formationen">
+        <MappingFragment StoreEntitySet="Formationen">
+          <ScalarProperty Name="FormationsID" ColumnName="FormationsID" />
+          <ScalarProperty Name="Aufstellung" ColumnName="Aufstellung" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mannschaften">
+      <EntityTypeMapping TypeName="FifaStatsModel.Mannschaften">
+        <MappingFragment StoreEntitySet="Mannschaften">
+          <ScalarProperty Name="MannschaftsID" ColumnName="MannschaftsID" />
+          <ScalarProperty Name="Torwart" ColumnName="Torwart" />
+          <ScalarProperty Name="Defensive" ColumnName="Defensive" />
+          <ScalarProperty Name="Mittelfeld" ColumnName="Mittelfeld" />
+          <ScalarProperty Name="Sturm" ColumnName="Sturm" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Spielergebnisse">
+      <EntityTypeMapping TypeName="FifaStatsModel.Spielergebnisse">
+        <MappingFragment StoreEntitySet="Spielergebnisse">
+          <ScalarProperty Name="SpielID" ColumnName="SpielID" />
+          <ScalarProperty Name="Tore" ColumnName="Tore" />
+          <ScalarProperty Name="Gegentore" ColumnName="Gegentore" />
+          <ScalarProperty Name="MannschaftsID" ColumnName="MannschaftsID" />
+          <ScalarProperty Name="FormationsID" ColumnName="FormationsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

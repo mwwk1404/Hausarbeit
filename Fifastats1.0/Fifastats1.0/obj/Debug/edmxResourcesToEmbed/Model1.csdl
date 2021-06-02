@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FifaStatsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Formationen">
+    <Key>
+      <PropertyRef Name="FormationsID" />
+    </Key>
+    <Property Name="FormationsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Aufstellung" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Spielergebnisse" Relationship="Self.FK_FormationsID" FromRole="Formationen" ToRole="Spielergebnisse" />
+  </EntityType>
+  <EntityType Name="Mannschaften">
+    <Key>
+      <PropertyRef Name="MannschaftsID" />
+    </Key>
+    <Property Name="MannschaftsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Torwart" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Defensive" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Mittelfeld" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Sturm" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Spielergebnisse" Relationship="Self.FK_MannschatfsID" FromRole="Mannschaften" ToRole="Spielergebnisse" />
+  </EntityType>
+  <EntityType Name="Spielergebnisse">
+    <Key>
+      <PropertyRef Name="SpielID" />
+    </Key>
+    <Property Name="SpielID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Tore" Type="Int32" />
+    <Property Name="Gegentore" Type="Int32" />
+    <Property Name="MannschaftsID" Type="Int32" />
+    <Property Name="FormationsID" Type="Int32" />
+    <NavigationProperty Name="Formationen" Relationship="Self.FK_FormationsID" FromRole="Spielergebnisse" ToRole="Formationen" />
+    <NavigationProperty Name="Mannschaften" Relationship="Self.FK_MannschatfsID" FromRole="Spielergebnisse" ToRole="Mannschaften" />
+  </EntityType>
+  <Association Name="FK_FormationsID">
+    <End Role="Formationen" Type="Self.Formationen" Multiplicity="0..1" />
+    <End Role="Spielergebnisse" Type="Self.Spielergebnisse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Formationen">
+        <PropertyRef Name="FormationsID" />
+      </Principal>
+      <Dependent Role="Spielergebnisse">
+        <PropertyRef Name="FormationsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MannschatfsID">
+    <End Role="Mannschaften" Type="Self.Mannschaften" Multiplicity="0..1" />
+    <End Role="Spielergebnisse" Type="Self.Spielergebnisse" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mannschaften">
+        <PropertyRef Name="MannschaftsID" />
+      </Principal>
+      <Dependent Role="Spielergebnisse">
+        <PropertyRef Name="MannschaftsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FifaStatsEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Formationen" EntityType="Self.Formationen" />
+    <EntitySet Name="Mannschaften" EntityType="Self.Mannschaften" />
+    <EntitySet Name="Spielergebnisse" EntityType="Self.Spielergebnisse" />
+    <AssociationSet Name="FK_FormationsID" Association="Self.FK_FormationsID">
+      <End Role="Formationen" EntitySet="Formationen" />
+      <End Role="Spielergebnisse" EntitySet="Spielergebnisse" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MannschatfsID" Association="Self.FK_MannschatfsID">
+      <End Role="Mannschaften" EntitySet="Mannschaften" />
+      <End Role="Spielergebnisse" EntitySet="Spielergebnisse" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
