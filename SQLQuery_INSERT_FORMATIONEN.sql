@@ -4,7 +4,7 @@ GO
 USE FifaStats;
 GO
 
-INSERT INTO Formationen (FormationsID, Aufstellung)
+INSERT INTO Formationen (Aufstellung)
 VALUES
 
 ('3-1-4-2'),
