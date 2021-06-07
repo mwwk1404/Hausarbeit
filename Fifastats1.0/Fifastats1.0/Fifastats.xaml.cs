@@ -161,6 +161,10 @@ namespace Fifastats1._0
                 GegentoreproSpieldurschnitt = Math.Round(GegentoreproSpieldurschnitt, 3);
                 TB_Tore_proSpiel.Text = Convert.ToString(ToreproSpieldurschnitt);
                 TB_Gegntore_proSpiel.Text = Convert.ToString(GegentoreproSpieldurschnitt);
+                if (Verloren == 0)
+                {
+                    Verloren = 1;
+                }
                 decimal SN_Verhältnis = Gewonnen / Verloren;
                 SN_Verhältnis = Math.Round(SN_Verhältnis, 3);
                 TB_SN_Verhältnis.Text = Convert.ToString(SN_Verhältnis);
